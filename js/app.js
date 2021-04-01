@@ -12,6 +12,8 @@ window.onload = function(){
 
   let thankContainer = document.getElementsByClassName('email-thank')[0];
 
+  let declineOffer = document.getElementsByClassName('email-modal__decline-offer')[0];
+
   function emailIsValid (email) {
     return /\S+@\S+\.\S+/.test(email)
   }
@@ -41,6 +43,10 @@ window.onload = function(){
     thankContainer.classList.add('email-thank--success');
   }
 
+  closeButton.addEventListener('click', () => {
+    closeModal();
+  });
+
   emailInput.addEventListener('click', () => {
     removeErrors();
   })
@@ -52,13 +58,11 @@ window.onload = function(){
     addErrors();
   }
   })
-  
 
-  closeButton.addEventListener('click', () => {
+  declineOffer.addEventListener('click', () => {
     closeModal();
   });
-
- 
+  
     document.body.addEventListener('mouseleave', () => {
       showModal();
     });
