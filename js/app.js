@@ -10,6 +10,7 @@ window.onload = function(){
 
   let emailButton = document.getElementsByClassName('email-modal__button')[0];
 
+  let thankContainer = document.getElementsByClassName('email-thank')[0];
 
   function emailIsValid (email) {
     return /\S+@\S+\.\S+/.test(email)
@@ -36,13 +37,17 @@ window.onload = function(){
     document.getElementsByClassName('email-modal__error-message')[0].classList.remove('email-modal__error-message--active');
   }
 
+  let showThankMessage = () => {
+    thankContainer.classList.add('email-thank--success');
+  }
+
   emailInput.addEventListener('click', () => {
     removeErrors();
   })
 
   emailButton.addEventListener('click', () => {
     if(emailIsValid(emailInput.value)) {
-    console.log(emailInput.value)
+    showThankMessage();
   } else {
     addErrors();
   }
