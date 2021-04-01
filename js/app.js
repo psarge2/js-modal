@@ -4,7 +4,7 @@ window.onload = function(){
 
   let emailModal = document.getElementsByClassName('email-modal')[0]
 
-  let closeModal = document.getElementsByClassName('email-modal__close-btn')[0]
+  let closeButton = document.getElementsByClassName('email-modal__close-btn')[0]
 
   let emailInput = document.getElementsByClassName('email-modal__input')[0]
 
@@ -15,23 +15,42 @@ window.onload = function(){
     return /\S+@\S+\.\S+/.test(email)
   }
 
-  emailButton.addEventListener('click', () => {
-    if(emailIsValid(emailInput.value)) {
-    console.log(emailInput.value)
-  } else {
-    document.getElementsByClassName('email-modal__form-group')[0].classList.add('email-modal__form-group--error');
-    document.getElementsByClassName('email-modal__error-message')[0].classList.add('email-modal__error-message--active');
-  }
-  })
-  
   let showModal = () => {
     if(emailState == false){
       emailModal.classList.add('email-modal--visible');
       emailState = true
     }
   }
-  closeModal.addEventListener('click', () => {
+
+ let closeModal = () => {
     emailModal.classList.remove('email-modal--visible');
+  }
+
+  let addErrors = () => {
+    document.getElementsByClassName('email-modal__form-group')[0].classList.add('email-modal__form-group--error');
+    document.getElementsByClassName('email-modal__error-message')[0].classList.add('email-modal__error-message--active');
+  }
+
+  let removeErrors = () => {
+    document.getElementsByClassName('email-modal__form-group')[0].classList.remove('email-modal__form-group--error');
+    document.getElementsByClassName('email-modal__error-message')[0].classList.remove('email-modal__error-message--active');
+  }
+
+  emailInput.addEventListener('click', () => {
+    removeErrors();
+  })
+
+  emailButton.addEventListener('click', () => {
+    if(emailIsValid(emailInput.value)) {
+    console.log(emailInput.value)
+  } else {
+    addErrors();
+  }
+  })
+  
+
+  closeButton.addEventListener('click', () => {
+    closeModal();
   });
 
  
