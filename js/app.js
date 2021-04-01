@@ -41,7 +41,10 @@ window.onload = function(){
 
   let showThankMessage = () => {
     thankContainer.classList.add('email-thank--success');
-  }
+    setTimeout(() => {
+      closeModal();
+    }, 3000)
+  };
 
   closeButton.addEventListener('click', () => {
     closeModal();
